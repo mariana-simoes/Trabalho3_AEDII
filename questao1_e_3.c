@@ -4,10 +4,10 @@
 #include <time.h>
 
 #include "registro.h"
-#include "TAD_bst.h"
+#include "TAD_arv.h"
 
 #define ARQUIVO_DADOS  "dados.bin"
-#define N_REGISTROS    10000   // Recomendo colocar 100 pra debugging, 100000 para teste final.
+#define N_REGISTROS    100000   // Recomendo colocar 100 pra debugging, 100000 para teste final.
 #define N_BUSCAS       30       /* quantidade de buscas para medir tempo */
 
 static void gerar_chaves_teste(int chaves[], int n, int max)
@@ -59,7 +59,7 @@ int main(void)
     printf("\nConstruindo indice BST...\n");
 
     clock_gettime(CLOCK_MONOTONIC, &t0);
-    NoBST *raiz = bst_construir_indice(arq);
+    arv *raiz = construirIndice(arq);
     clock_gettime(CLOCK_MONOTONIC, &t1);
 
     double tempo_construcao = (t1.tv_sec  - t0.tv_sec) +
@@ -91,7 +91,7 @@ int main(void)
 
         for (int i = 0; i < N_BUSCAS; i++) {
             clock_gettime(CLOCK_MONOTONIC, &t0);
-            int ok = bst_buscar(raiz, chaves[i], arq, &resultado);
+            int ok = buscarNoArquivo(raiz, chaves[i], arq, &resultado);
             clock_gettime(CLOCK_MONOTONIC, &t1);
 
             double e = (t1.tv_sec  - t0.tv_sec) +
@@ -134,18 +134,14 @@ int main(void)
 
     resultadoComparacao(soma_bst / N_BUSCAS, soma_seq / N_BUSCAS);
 
-    bst_liberar(raiz);
+    raiz = podaArv(raiz);
     arquivo_fechar(arq);
 
     return 0;
 }
 
 // Para compilar:
-// gcc -Wall -Wextra -O2 -std=c11 -D_POSIX_C_SOURCE=199309L -o questao1_e_3 questao1_e_3.c registro.c TAD_bst.c
-
-// Modo de depuração (in-order):
-// gcc -Wall -Wextra -O2 -std=c11 -D_POSIX_C_SOURCE=199309L -DDEBUG_INORDER -o questao1_e_3 questao1_e_3.c registro.c TAD_bst.c
-// ./questao1_e_3
+// gcc -Wall -Wextra -O2 -std=c11 -D_POSIX_C_SOURCE=199309L -o questao1_e_3 questao1_e_3.c registro.c TAD_arv.c
 
 // Basta apagar o bin para recompilar. POR FAVOR APAGA ELE, caso contrário vai
 // distorcer os tempos de busca.
