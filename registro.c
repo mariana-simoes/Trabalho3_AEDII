@@ -5,6 +5,13 @@
 #include <string.h>
 #include <time.h>
 
+void gerar_chaves(int chaves[], int n, int max){
+    srand(42);
+    for (int i = 0; i < n; i++) {
+        chaves[i] = 1 + rand() % max;
+    }
+}
+
 FILE *arquivo_abrir(const char *caminho, const char *modo)
 {
     FILE *arq = fopen(caminho, modo);

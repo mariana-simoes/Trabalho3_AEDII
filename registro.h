@@ -36,6 +36,7 @@ void arquivo_fechar(FILE *arq);
 int arquivo_escrever(FILE *arq, const registro *reg, long pos);
 int arquivo_ler(FILE *arq, registro *reg, long pos);
 long arquivo_total_registros(FILE *arq);
+void gerar_chaves(int chaves[], int n, int max);
 
 void arquivo_gerar(const char *caminho, int n);
 

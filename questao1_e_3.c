@@ -10,16 +10,6 @@
 #define N_REGISTROS    100000   // Recomendo colocar 100 pra debugging, 100000 para teste final.
 #define N_BUSCAS       30       /* quantidade de buscas para medir tempo */
 
-static void gerar_chaves_teste(int chaves[], int n, int max)
-{
-    // OBS: Verificar se esse rand está bom
-    srand(42);
-    for (int i = 0; i < n; i++) {
-        chaves[i] = 1 + rand() % max;
-    }
-}
-
-
 static void resultadoComparacao(double media_bst, double media_seq)
 {
     printf("\n========================================\n");
@@ -68,7 +58,7 @@ int main(void)
 
    // Gera as chaves de teste
     int chaves[N_BUSCAS];
-    gerar_chaves_teste(chaves, N_BUSCAS, N_REGISTROS);
+    gerar_chaves(chaves, N_BUSCAS, N_REGISTROS);
 
     printf("\n[main] Chaves de teste:\n  ");
     for (int i = 0; i < N_BUSCAS; i++) {
