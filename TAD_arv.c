@@ -92,7 +92,7 @@ void posFix(arv *raiz)
 arv *construirIndice(FILE *arq)
 {
     arv     *raiz = inicializa();
-    Registro reg;
+    registro reg;
     long     total = arquivo_total_registros(arq);
 
     for (long pos = 0; pos < total; pos++) {
@@ -107,7 +107,7 @@ arv *construirIndice(FILE *arq)
 }
 
 // Função nova
-int buscarNoArquivo(arv *raiz, int id, FILE *arq, Registro *reg)
+int buscarNoArquivo(arv *raiz, int id, FILE *arq, registro *reg)
 {
     arv *no = buscaArv(raiz, id);
     if (no == NULL)

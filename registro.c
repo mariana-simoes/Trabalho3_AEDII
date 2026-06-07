@@ -4,13 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-
-void gerar_chaves(int chaves[], int n, int max){
-    srand(42);
-    for (int i = 0; i < n; i++) {
-        chaves[i] = 1 + rand() % max;
-    }
-}
+#include <math.h>
 
 FILE *arquivo_abrir(const char *caminho, const char *modo)
 {
@@ -157,4 +151,11 @@ int arquivo_busca_seq_chave(FILE *arq, int chave_alvo, registro *resultado)
         }
     }
     return 0;
+}
+
+void gerar_chaves(int chaves[], int n, int max)
+{
+    srand(999983); // primo grande para garantir chaves diferentes da geração do arquivo
+    for (int i = 0; i < n; i++)
+        chaves[i] = 1 + rand() % max;
 }

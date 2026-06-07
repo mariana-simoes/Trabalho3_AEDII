@@ -36,12 +36,13 @@ void arquivo_fechar(FILE *arq);
 int arquivo_escrever(FILE *arq, const registro *reg, long pos);
 int arquivo_ler(FILE *arq, registro *reg, long pos);
 long arquivo_total_registros(FILE *arq);
-void gerar_chaves(int chaves[], int n, int max);
 
 void arquivo_gerar(const char *caminho, int n);
 
 void registro_imprimir(const registro *reg);
 
 int arquivo_busca_seq_chave(FILE *arq, int chave_alvo, registro *resultado);
+
+void gerar_chaves(int chaves[], int n, int max);
 
 #endif /* REGISTRO_H */

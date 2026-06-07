@@ -20,6 +20,6 @@ void preFixado(arv *raiz);
 void central(arv *raiz);
 void posFix(arv *raiz);
 arv *construirIndice(FILE *arq);
-int buscarNoArquivo(arv *raiz, int id, FILE *arq, Registro *reg);
+int buscarNoArquivo(arv *raiz, int id, FILE *arq, registro *reg);
 
 #endif /* ARVORE_H */
