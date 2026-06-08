@@ -15,16 +15,16 @@
  * os dados completos ficam na memória durante toda a execução.
  * ========================================================= */
 
-/* Lista encadeada de registros com o mesmo valor de 'ano' */
+
 typedef struct noReg {
-    registro      reg;   /* struct completa — id, nome, ano, etc. */
+    registro      reg;   
     struct noReg *prox;
 } noReg;
 
-/* Nó da BST indexada por 'ano' */
+
 typedef struct arvAno {
-    int            ano;   /* chave do nó                          */
-    noReg         *lista; /* registros com este ano               */
+    int            ano;  
+    noReg         *lista; // registros com este ano
     struct arvAno *esq;
     struct arvAno *dir;
 } arvAno;
@@ -41,32 +41,25 @@ typedef struct resLista {
 #define OP_MENOR        2  /* <  */
 #define OP_MENOR_IGUAL  3  /* <= */
 
-/* ----- Interface pública ----- */
-
 /* Insere um registro na BST pelo campo reg->ano.
  * Se já existir nó com aquele ano, acrescenta à lista. */
 arvAno   *insereArvAno(arvAno *raiz, const registro *reg);
 
-/* Lê todo o arquivo e constrói o índice BST para 'ano' */
+// Lê todo o arquivo e constrói o índice BST para 'ano' 
 arvAno   *construirIndiceAno(FILE *arq);
 
-/* Libera toda a memória da BST (nós + listas de registros) */
+// Libera toda a memória da BST (nós + listas de registros) 
 void      podaArvAno(arvAno *raiz);
 
-/* Busca por intervalo: retorna lista com todos os registros
- * em que (reg.ano <op> limiar). Não acessa o arquivo — os
- * dados já estão nos nós da árvore.
- * O chamador deve liberar o resultado com liberaResLista(). */
 resLista *buscarRangeAno(const arvAno *raiz, int limiar, int op);
 
-/* Libera a lista de resultados */
+// Libera a lista de resultados 
 void      liberaResLista(resLista *lista);
 
-/* Conta os itens da lista de resultados */
+// Conta os itens da lista de resultados 
 int       contarResLista(const resLista *lista);
 
-/* Exibe os anos presentes na BST em ordem crescente
- * (útil para verificar a correção com poucos registros) */
+// Exibe os anos presentes na BST em ordem crescente
 void      exibirIndiceAno(const arvAno *raiz);
 
 #endif /* TAD_ARV_ANO_H */
