@@ -17,7 +17,7 @@ arvAno *insereArvAno(arvAno *raiz, const registro *reg)
         noReg *nr = (noReg *) malloc(sizeof(noReg));
         if (nr == NULL) { free(novo); perror("insereArvAno: noReg malloc"); return NULL; }
 
-        nr->reg   = *reg;  /* copia toda a struct registro */
+        nr->reg   = *reg; 
         nr->prox  = NULL;
 
         novo->ano   = reg->ano;
@@ -42,10 +42,6 @@ arvAno *insereArvAno(arvAno *raiz, const registro *reg)
     return raiz;
 }
 
-/* =========================================================
- * construirIndiceAno
- * Lê todos os registros do arquivo e insere na BST pelo ano.
- * ========================================================= */
 arvAno *construirIndiceAno(FILE *arq)
 {
     arvAno  *raiz  = NULL;
@@ -61,10 +57,6 @@ arvAno *construirIndiceAno(FILE *arq)
     return raiz;
 }
 
-/* =========================================================
- * podaArvAno
- * Libera recursivamente todos os nós e suas listas.
- * ========================================================= */
 void podaArvAno(arvAno *raiz)
 {
     if (raiz == NULL) return;
@@ -77,11 +69,6 @@ void podaArvAno(arvAno *raiz)
     free(raiz);
 }
 
-/* =========================================================
- * exibirIndiceAno
- * Percurso em-ordem: exibe cada ano e a quantidade de
- * registros associados (util para depuração com N pequeno).
- * ========================================================= */
 void exibirIndiceAno(const arvAno *raiz)
 {
     if (raiz == NULL) return;
@@ -92,9 +79,6 @@ void exibirIndiceAno(const arvAno *raiz)
     exibirIndiceAno(raiz->dir);
 }
 
-/* =========================================================
- * Funções de resultado
- * ========================================================= */
 void liberaResLista(resLista *lista)
 {
     while (lista) { resLista *tmp = lista; lista = lista->prox; free(tmp); }
