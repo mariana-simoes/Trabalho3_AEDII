@@ -75,12 +75,14 @@ int main(void)
              * Mede apenas o tempo de travessia — base justa de
              * comparação com a busca sequencial da Questão 5,
              * que também só conta sem alocar memória.          */
-            double ini = tempoAtual();
-            int cnt = contarRangeAno(raiz, LIMIARES[i], operadores[op]);
-            tempos[op][i] = tempoAtual() - ini;
+                 double ini = tempoAtual();
+                 resLista *res = buscarRangeAno(raiz, LIMIARES[i], operadores[op]);
+                 int cnt = contarResLista(res);
+                 tempos[op][i] = tempoAtual() - ini;
+                 liberaResLista(res);
 
-            printf("[BST] ano %s %-4d : %6d registros  %.9f s\n",
-                   sinais[op], LIMIARES[i], cnt, tempos[op][i]);
+                 printf("[BST] ano %s %-4d : %6d registros  %.9f s\n",
+                     sinais[op], LIMIARES[i], cnt, tempos[op][i]);
         }
 
         /* --- Estatísticas --- */
